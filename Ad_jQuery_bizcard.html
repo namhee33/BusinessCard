@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+	<head>
+		<title>My Contact Card</title>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript">
+
+			function clearData(){
+				$('input[name=first_name').val('');
+				$('input[name=last_name').val('');
+				$('textarea[name=description').val('');
+			}
+			$(document).ready(function(){
+				
+				var msg = 'Click for description!';
+				$('input[type=submit]').click(function(){
+
+					var _name = $('<p>');
+					var _dsc = $('<p>');
+					_dsc.css('display', 'none');
+					_name.text($('input[name=first_name').val() + ' ' +$('input[name=last_name').val());
+					_dsc.text($('textarea[name=description').val());
+
+					var _card = $('<div class="newcard">');
+					
+					_card.append(_name);
+					_card.append(_dsc);
+
+					$('#card_box').append(_card);
+
+					$(document).off('click', '.newcard').on('click', '.newcard', function(event){
+						
+						$(this).children('p').toggle(); 
+						
+					});
+
+					clearData();
+					return false;
+					
+				});
+
+				
+			});
+
+
+		</script>
+
+
+		<style type="text/css">
+			*{
+				margin: 0px;
+				padding: 0px;
+			}
+			#container{
+				width: 800px;
+				margin: 0 auto;
+				padding-top: 30px;
+			}
+			#input_box, #card_box{
+				width: 300px;
+			
+				display: inline-block;
+				vertical-align: top;
+			}
+
+			
+			
+			#form1 div{
+				margin: 10px;
+			}
+
+			.newcard{
+				width: 300px;
+				height: 50px;
+				display: inline-block;
+				padding: 10px;
+				margin-bottom: 10px;
+				border: black solid 1px;
+				
+			}
+
+			textarea{
+				margin-top: 10px;
+				width: 230px;
+				height: 150px;
+			}
+
+
+		</style>
+	</head>
+
+	<body>
+		<div id='container'>
+			<div id='input_box'>
+				<form id='form1'>
+					<div>
+						First name: <input name='first_name' type='text'>
+					</div>
+					<div>
+						Last name: <input name='last_name' type='text'>
+					</div>
+					<div>
+						Description: <textarea name='description' placeholder='Enter description'></textarea>
+					</div>
+					<div>
+						<input type='submit' value='Add User'>
+					</div>
+				</form>
+			</div>
+			<div id='card_box'>
+
+			</div>
+
+		</div>
+
+	</body>
+
+</html>
